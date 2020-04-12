@@ -1,3 +1,6 @@
+# import module for last part of this file
+import os.path
+
 # opens txt file to be read (may need file path in first  string argument)
 input_file = open("instructors.txt", "r")
 whole_file = input_file.read()
@@ -44,3 +47,44 @@ for line in input_file5:
 
 input_file5.close()
 print("Total score is: ", total)
+print("-----store in an array-----")
+score_list = []
+input_file6 = open("scores.txt", "r")
+
+for line in input_file6:
+    number = float(line)
+    score_list.append(number)
+
+for score in score_list:
+    print(score)
+
+input_file6.close()
+total = sum(score_list)
+print(score_list)
+print("Total score is: ", total)
+print("-----string processing techniques-----")
+input_file7 = open("employees.txt", "r")
+
+for line in input_file7:
+    line_items = line.split(",")  # split input line at comma
+    # strip blank spaces from input line and store name in store in name variable
+    name = line_items[0].strip()
+    # convert salary to float and store in salary variable
+    salary = float(line_items[1])
+    new_salary = salary * 1.05  # add 5% raise to existing salary
+    print("Name: ", name, "New salary: ", new_salary)
+
+input_file7.close()
+print("------check if file exists-----")
+if os.path.isfile("employees.txt"):
+    input_file8 = open("employees.txt", "r")
+    for line in input_file8:
+        line_items = line.split(",")
+        name = line_items[0].strip()
+        salary = float(line_items[1])
+        raise_amount = salary * .05
+        new_salary = salary + raise_amount
+        print("Name:", name, "Raise amount",
+              raise_amount, "New salary:", new_salary)
+else:
+    print("File does not exist: employees.txt")
